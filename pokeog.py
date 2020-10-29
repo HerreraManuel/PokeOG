@@ -2,21 +2,22 @@ import discord
 import json
 import asyncio
 
-client = discord.Client()
+bot = discord.Client()
 
 with open('config.json') as config:
     config_data = json.load(config)
 
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    #print('We have logged in as {0.user}'.format(bot))
+    print("Bot is running...")
 
-@client.event
+@bot.event
 async def on_message(message):
-    if message.author == client.user:
+    if message.author == bot.user:
         return
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
 
-client.run(config_data['token'])
+bot.run(config_data['token'])
