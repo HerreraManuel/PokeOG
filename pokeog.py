@@ -12,7 +12,8 @@ with open('config.json') as config:
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print("Bot is running...")
-
+    # BOT STATUS
+    await bot.change_presence(activity=discord.Game("Pokemon Red"))
 
 @bot.command()
 async def wild(ctx):
