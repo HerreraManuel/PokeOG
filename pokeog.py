@@ -14,7 +14,10 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print("Bot is running...")
     # Database creation
-    db = sqlite
+    db = sqlite3.connect('main.sqlite')
+    cursor = db.cursor()
+    cursor.execute()
+
     # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokemon Red"))
 
