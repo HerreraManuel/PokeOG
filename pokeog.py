@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import json
 import asyncio
+import sqlite3
 
 bot = commands.Bot(command_prefix='!')
 
@@ -12,7 +13,9 @@ with open('config.json') as config:
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print("Bot is running...")
-    # BOT STATUS
+    # Database creation
+    db = sqlite
+    # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokemon Red"))
 
 @bot.command()
