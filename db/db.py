@@ -2,13 +2,13 @@ import aiosqlite
 import discord
 
 async def connect():
-    connect = await aiosqlite.connect("pokedex.sqlite")
+    db_connect = await aiosqlite.connect("pokedex.sqlite")
     connect.row_factory = aiosqlite.Row
     return connect
 
 # Encounter wild pokemon
 async def wild_encounter(randomPoke):
-    connect = await connect()
+    connect = await db_connect()
     cursor = await connect.cursor()
     sql = """
     SELECT id, identifier
@@ -20,3 +20,6 @@ async def wild_encounter(randomPoke):
     for tuple in fetched_data:
         num, name = tuple
     return name
+
+def test():
+    print("import works")

@@ -4,7 +4,7 @@ import json
 import asyncio
 import sqlite3
 import random
-import db
+from db import db
 
 bot = commands.Bot(command_prefix='!')
 
@@ -20,11 +20,9 @@ async def on_ready():
 
 @bot.command()
 async def wild(ctx):
-    db = sqlite3.connect("pokedex.sqlite")
-    cursor = db.cursor()
     # Generate random value between 1 - 151 
     randomPoke = random.randint(1, 152)
     pokemon = await db.wild_encounter(randomPoke)
-    db.
+    await ctx.send(pokemon)
 
 bot.run(config_data['token'])
