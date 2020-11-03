@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 import asyncio
 import sqlite3
+import random
 
 bot = commands.Bot(command_prefix='!')
 
@@ -24,6 +25,7 @@ async def wild(ctx):
     FROM pokemon
     WHERE id=4;""")
     result = cursor.fetchall()
-    await ctx.send(str(result[0]))
+    num = random.randint(1, 101)
+    await ctx.send(num)
 
 bot.run(config_data['token'])
