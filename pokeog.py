@@ -21,8 +21,9 @@ async def on_ready():
 @bot.command()
 async def wild(ctx):
     # Generate random value between 1 - 151 
-    randomPoke = random.randint(1, 152)
+    randomPoke = random.randint(1, 151)
     pokemon = await db.wild_encounter(randomPoke)
-    await ctx.send(pokemon)
+
+    await ctx.send(pokemon['identifier'])
 
 bot.run(config_data['token'])

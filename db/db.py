@@ -15,11 +15,9 @@ async def wild_encounter(randomPoke):
     FROM pokemon
     WHERE id=?;"""
     await cursor.execute(sql, (randomPoke,))
-    fetched_data = await cursor.fetchall()
+    fetched_data = await cursor.fetchone()
     await connect.close()
-    for tuple in fetched_data:
-        num, name = tuple
-    return name
+    return fetched_data
 
 def test():
     print("import works")
