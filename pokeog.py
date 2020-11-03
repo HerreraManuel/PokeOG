@@ -24,8 +24,10 @@ async def wild(ctx):
     cursor.execute("""SELECT id, identifier
     FROM pokemon
     WHERE id=4;""")
-    result = cursor.fetchall()
     num = random.randint(1, 101)
+    for tuple in cursor.fetchall():
+        num, name = tuple
+    await ctx.send(name)
     await ctx.send(num)
 
 bot.run(config_data['token'])
