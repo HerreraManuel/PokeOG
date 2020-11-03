@@ -13,14 +13,17 @@ with open('config.json') as config:
 async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print("Bot is running...")
-    # Database creation
-    db = sqlite3.connect("pokedex.sqlite")
-
     # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokemon Red"))
 
 @bot.command()
 async def wild(ctx):
-    await ctx.send('accepted!')
+    db = sqlite3.connect("pokedex.sqlite")
+    cursor = db.cursor()
+    cursor.execute("""SELECT id, identifier
+    FROM pokemon
+    WHERE id=4;""")
+    result = cursor.fetchall()
+    await ctx.send(str(result[0]))
 
 bot.run(config_data['token'])
