@@ -21,13 +21,14 @@ async def on_ready():
 async def wild(ctx):
     db = sqlite3.connect("pokedex.sqlite")
     cursor = db.cursor()
-    cursor.execute("""SELECT id, identifier
+    # Generate random value between 1 - 151 
+    randomPoke = random.randint(1, 101)
+    sql = ("""SELECT id, identifier
     FROM pokemon
-    WHERE id=4;""")
-    num = random.randint(1, 101)
+    WHERE id=?;""")
+    cursor.execute(sql, (randomPoke,))
     for tuple in cursor.fetchall():
         num, name = tuple
     await ctx.send(name)
-    await ctx.send(num)
 
 bot.run(config_data['token'])
