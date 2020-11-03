@@ -1,8 +1,8 @@
 import aiosqlite
 import discord
 
-async def connect():
-    db_connect = await aiosqlite.connect("pokedex.sqlite")
+async def db_connect():
+    connect = await aiosqlite.connect("db/pokedex.sqlite")
     connect.row_factory = aiosqlite.Row
     return connect
 
@@ -13,7 +13,7 @@ async def wild_encounter(randomPoke):
     sql = """
     SELECT id, identifier
     FROM pokemon
-    HERE id=?;"""
+    WHERE id=?;"""
     await cursor.execute(sql, (randomPoke,))
     fetched_data = await cursor.fetchall()
     await connect.close()
