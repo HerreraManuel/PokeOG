@@ -131,3 +131,6 @@ dmypy.json
 
 # token storage
 /config.json
+
+*sqlite
+*sqlite3
