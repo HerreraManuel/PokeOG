@@ -9,7 +9,7 @@ from db import db
 bot = commands.Bot(command_prefix='!')
 
 with open('config.json') as config:
-    config_data = json.load(config)
+    config_data = json.load(config)``
 
 @bot.event
 async def on_ready():
@@ -21,9 +21,8 @@ async def on_ready():
 @bot.command()
 async def wild(ctx):
     # Generate random value between 1 - 151 
-    randomPoke = random.randint(1, 151)
+    randomPoke = random.randint(1, 152)
     pokemon = await db.wild_encounter(randomPoke)
-
     await ctx.send(pokemon['identifier'])
 
 bot.run(config_data['token'])
