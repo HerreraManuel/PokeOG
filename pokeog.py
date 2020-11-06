@@ -21,8 +21,13 @@ async def on_ready():
 @bot.command()
 async def wild(ctx):
     # Generate random value between 1 - 151 
-    random_Poke = random.randint(1, 152)
-    poke_Info = await db.wild_encounter(randomPoke)
-    await ctx.send(pokemon['identifier'])
+    random_poke = random.randint(1, 152)
+    poke_Info = await db.wild_encounter(random_poke)
+    embed=discord.Embed(color=0x18b48d)
+    embed.set_author(name="A wild pokémon has appeared!")
+    #embed.set_thumbnail(url=)
+    #embed.add_field(name=, value=t, inline=True)
+    #embed.set_footer(text=)
+    await ctx.send(embed=embed)
 
 bot.run(config_data['token'])
