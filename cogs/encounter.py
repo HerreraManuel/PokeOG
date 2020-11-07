@@ -7,6 +7,9 @@ import os
 
 
 class Encounter(commands.Cog):
+    
+    current_pokemon = ""
+
     def __init__(self, bot):
         self.bot = bot
     
