@@ -6,14 +6,15 @@ import random
 from database import db
 
 bot = commands.Bot(command_prefix='!')
-current_pokemon = ""
-
-# list of our cogs
-cog_collection = ['cogs.encounter']
 
 with open('config.json') as config:
     config_data = json.load(config)
 
+
+# list of our cogs
+cog_collection = ['cogs.encounter']
+
+# load the cogs, print error if otherwise
 if __name__ == '__main__':
     for single_cog in cog_collection:
         try:
