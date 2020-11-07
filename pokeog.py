@@ -2,7 +2,6 @@ import discord
 from discord.ext import commands
 import json
 import asyncio
-import sqlite3
 import random
 from database import db
 
@@ -23,12 +22,13 @@ async def wild(ctx):
     # Generate random value between 1 - 151 
     random_poke = random.randint(1, 152)
     poke_Info = await db.wild_encounter(random_poke)
-    embed=discord.Embed(color=0x18b48d)
-    embed.set_author(name="A wild pokémon has appeared!",
-        description="||test||")
+    embed=discord.Embed(description="Descriptive text for the Pokémon", color=0x18b48d)
+    embed.set_author(name="A wild pokémon has appeared!")
+    file=discord.File("res/sprites/venusaur.png", filename="poke.png")
+    embed.set_image(url="attachment://poke.png")
     #embed.set_thumbnail(url=)
     #embed.add_field(name=, value=t, inline=True)
     #embed.set_footer(text=)
-    await ctx.send(embed=embed)
+    await ctx.send(file=file, embed=embed)
 
 bot.run(config_data['token'])
