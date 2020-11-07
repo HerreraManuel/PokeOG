@@ -4,7 +4,7 @@ import json
 import asyncio
 import sqlite3
 import random
-from db import db
+from database import db
 
 bot = commands.Bot(command_prefix='!')
 
@@ -24,7 +24,8 @@ async def wild(ctx):
     random_poke = random.randint(1, 152)
     poke_Info = await db.wild_encounter(random_poke)
     embed=discord.Embed(color=0x18b48d)
-    embed.set_author(name="A wild pokémon has appeared!")
+    embed.set_author(name="A wild pokémon has appeared!",
+        description="||test||")
     #embed.set_thumbnail(url=)
     #embed.add_field(name=, value=t, inline=True)
     #embed.set_footer(text=)
