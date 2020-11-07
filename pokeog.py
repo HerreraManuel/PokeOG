@@ -9,10 +9,18 @@ bot = commands.Bot(command_prefix='!')
 current_pokemon = ""
 
 # list of our cogs
-cog_collection = ['cogs.Encounter']
+cog_collection = ['cogs.encounter']
 
 with open('config.json') as config:
     config_data = json.load(config)
+
+if __name__ == '__main__':
+    for single_cog in cog_collection:
+        try:
+            bot.load_extension(single_cog)
+        except Exception as e:
+            print(f'Failed to load extension {extension}.', file=sys.stderr)
+            traceback.print_exc()
 
 @bot.event
 async def on_ready():
@@ -21,14 +29,4 @@ async def on_ready():
     # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokémon Red"))
 
-
-
-# catch command to check if user successfully caught a pokemon
-@bot.command()
-async def catch(ctx):
-    await ctx.send("Congratulations USER! You caught a POKEMON! Added to Pokédex.")
-
-for single_cog in cog_collection
-    bot.load_extension(single_cog)
-    
 bot.run(config_data['token'])

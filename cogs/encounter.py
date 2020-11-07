@@ -1,12 +1,17 @@
 import discord
 from discord.ext import commands
+import asyncio
+import random
+from database import db
+import os
+
 
 class Encounter(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
     
-    @commands.Clog.encounter()
-    async def wild(ctx):
+    @commands.command()
+    async def wild(self, ctx):
         # Generate random value between 1 - 151 
         random_poke = random.randint(1, 152)
         poke_Info = await db.wild_encounter(random_poke)
@@ -21,4 +26,4 @@ class Encounter(commands.Cog):
         await ctx.send(file=file, embed=embed)
 
 def setup(bot):
-    bots.add_cog(Encounter(bot))
+    bot.add_cog(Encounter(bot))
