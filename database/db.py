@@ -2,7 +2,7 @@ import aiosqlite
 import discord
 
 async def db_connect():
-    connect = await aiosqlite.connect("db/pokedex.sqlite")
+    connect = await aiosqlite.connect("database/pokedex.sqlite")
     connect.row_factory = aiosqlite.Row
     return connect
 
