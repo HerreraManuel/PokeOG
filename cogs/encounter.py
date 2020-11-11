@@ -28,10 +28,10 @@ class Encounter(commands.Cog):
 
     # catch command for pokemon on stage
     @commands.command()
-    async def catch(self, ctx, arg: str):
+    async def catch(self, ctx, arg):
         global current_pokemon
         if arg.lower() == current_pokemon:
-            embed=discord.Embed(description="{} caught a {}".format(), color=0x18b48d)
+            embed=discord.Embed(description=f"{ctx.author.mention} has caught a {current_pokemon}!", color=0x18b48d)
             embed.set_author(name="Congragulations! You caught a pokémon!")
             await ctx.send(embed=embed)
 
