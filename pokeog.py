@@ -31,3 +31,4 @@ async def on_ready():
     await bot.change_presence(activity=discord.Game("Pokémon Red"))
 
 bot.run(config_data['token'])
+

@@ -5,11 +5,9 @@ import random
 from database import db
 import os
 
+current_pokemon = ""
 
 class Encounter(commands.Cog):
-
-    current_pokemon = ""
-
     def __init__(self, bot):
         self.bot = bot
     
@@ -18,6 +16,7 @@ class Encounter(commands.Cog):
         # Generate random value between 1 - 151 
         random_poke = random.randint(1, 152)
         poke_Info = await db.wild_encounter(random_poke)
+        global current_pokemon
         current_pokemon = poke_Info["name"]
         embed=discord.Embed(description="Guess the pokémon and type !catch <pokémon> \nto catch it!", color=0x18b48d)
         embed.set_author(name="A wild pokémon has appeared!")
@@ -29,9 +28,12 @@ class Encounter(commands.Cog):
 
     # catch command for pokemon on stage
     @commands.command()
-    async def catch(self, ctx, arg):
+    async def catch(self, ctx, arg: str):
+        global current_pokemon
         if arg.lower() == current_pokemon:
-            await ctx.send("Congrats! you caught a pokemon")
+            embed=discord.Embed(description="{} caught a {}".format(), color=0x18b48d)
+            embed.set_author(name="Congragulations! You caught a pokémon!")
+            await ctx.send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Encounter(bot))
