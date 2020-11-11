@@ -3,7 +3,7 @@ from discord.ext import commands
 import asyncio
 import random
 from database import db
-import os
+from datetime import date
 
 current_pokemon = ""
 
@@ -31,8 +31,10 @@ class Encounter(commands.Cog):
     async def catch(self, ctx, arg):
         global current_pokemon
         if arg.lower() == current_pokemon:
+            month_day_year = date.today().strftime("%d/%m/%Y")
             embed=discord.Embed(description=f"{ctx.author.mention} has caught a {current_pokemon}!", color=0x18b48d)
             embed.set_author(name="Congragulations! You caught a pokémon!")
+            embed.set_footer(text=month_day_year)
             await ctx.send(embed=embed)
 
 def setup(bot):
