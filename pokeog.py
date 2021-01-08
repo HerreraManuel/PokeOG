@@ -9,8 +9,8 @@ from database import db
 
 bot = commands.Bot(command_prefix='!')
 
-with open('config.json') as config:
-    config_data = json.load(config)
+#with open('config.json') as config:
+#   config_data = json.load(config)
 
 token = os.environ.get('BOT_TOKEN')
 
