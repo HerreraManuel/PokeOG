@@ -34,5 +34,5 @@ async def on_ready():
     # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokémon Red"))
 
-bot.run(token)
+bot.run(os.environ.get('BOT_TOKEN'))
 
