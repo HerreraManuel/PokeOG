@@ -12,7 +12,8 @@ bot = commands.Bot(command_prefix='!')
 with open('config.json') as config:
     config_data = json.load(config)
 
-s3 = S3Connection(os.environ['S3_KEY'], os.environ['S3_SECRET'])
+token = os.environ.get('BOT_TOKEN')
+
 
 # list of our cogs
 cog_collection = ['cogs.encounter']
@@ -33,5 +34,5 @@ async def on_ready():
     # Bot Status 
     await bot.change_presence(activity=discord.Game("Pokémon Red"))
 
-bot.run(config_data['process.env.BOT_TOKEN'])
+bot.run('token')
 
