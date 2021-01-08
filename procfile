@@ -1,1 +1,1 @@
-worker: python3 pokeog.py
+worker: python pokeog.py
